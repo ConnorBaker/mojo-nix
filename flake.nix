@@ -16,12 +16,12 @@
         {config, pkgs, ...}:
         {
           packages = {
-            libedit2 = pkgs.callPackage ./libedit2 {};
+            libedit = pkgs.callPackage ./libedit {};
             modular = pkgs.callPackage ./modular {};
-            ncurses_6_5 = pkgs.callPackage ./ncurses_6_5 {};
+            ncurses = pkgs.callPackage ./ncurses {};
           };
           devShells.mojo = pkgs.callPackage ./mojo/devShell.nix {
-            inherit (config.packages) libedit2 modular ncurses_6_5;
+            inherit (config.packages) libedit modular ncurses;
           };
         };
     };

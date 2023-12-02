@@ -1,11 +1,11 @@
 {
   autoPatchelfHook,
   lib,
-  libedit2,
+  libedit,
   libxml2,
   mkShell,
   modular,
-  ncurses_6_5,
+  ncurses,
   python3,
   stdenv,
 }:
@@ -13,9 +13,9 @@ let
   # Required libraries
   neededLibs = [
     libxml2 # libxml2.so.2
-    libedit2 # libedit.so.2
+    libedit # libedit.so.2
     stdenv.cc.cc # libgcc_s.so.1, libstdc++.so.6
-    ncurses_6_5 # libtinfo.so.6, libncurses.so.6, libform.so.6
+    ncurses # libtinfo.so.6, libncurses.so.6, libform.so.6
   ];
 in
 mkShell {
