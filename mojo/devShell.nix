@@ -36,27 +36,24 @@ mkShell {
   };
 
   shellHook =
-    # Make sure the modular home directory exists.
+    # Make sure we have a clean modular home directory.
     ''
-      modular clean
+      rm -rf "$MODULAR_HOME"
       mkdir -p "$MODULAR_HOME"
     ''
-    # If we're missing the bootstrap.json file, copy it from the modular package.
+    # Copy the bootstrap.json file to the modular home directory and set the last modified
+    # time to the current time.
     + ''
-      if [[ ! -f "$MODULAR_HOME/bootstrap.json" ]]; then
-        cp "${modular}/etc/modular/bootstrap.json" "$MODULAR_HOME/bootstrap.json"
-      fi
+      cp "${modular}/etc/modular/bootstrap.json" "$MODULAR_HOME/bootstrap.json"
+      touch -m "$MODULAR_HOME/bootstrap.json"
     ''
-    # If modular config-list user.id is not set, read it from the environment variable
-    # and set it. Error if it's not set.
+    # Set user.id. Error if it's not present in the environment.
     + ''
-      if [[ "$(${lib.getExe modular} config-list user.id)" == "" ]]; then
-        if [[ "''${MODULAR_AUTH-}" == "" ]]; then
-          echo "MODULAR_AUTH environment variable is not set. Please set it to your user.id."
-          exit 1
-        fi
-        modular config-set "user.id=$MODULAR_AUTH"
+      if [[ "''${MODULAR_AUTH-}" == "" ]]; then
+        echo "MODULAR_AUTH environment variable is not set. Please set it to your user.id."
+        exit 1
       fi
+      modular config-set "user.id=$MODULAR_AUTH"
     ''
     # Install mojo. This will fail with an error if libstdc++.so.6 is not found.
     # TODO: Find out how to force this. LD_PRELOAD doesn't seem to work -- Python's fault?

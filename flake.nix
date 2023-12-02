@@ -5,7 +5,7 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:connorbaker/nixpkgs/fix/ncurses-no-unicode";
   };
 
   outputs =

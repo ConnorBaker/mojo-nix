@@ -36,16 +36,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1701403013,
-        "narHash": "sha256-g1EhJ5WN9j5NrKd2DQ40cpzd9X8x+4kfy24U5ndisr0=",
-        "owner": "nixos",
+        "lastModified": 1701538935,
+        "narHash": "sha256-0UA9fUtkmBxQg0+ky387S4X/q1Rs5GsVZCYdet5NFhA=",
+        "owner": "connorbaker",
         "repo": "nixpkgs",
-        "rev": "77651cc03509c9a6fc29329b5db77272f2e2cec2",
+        "rev": "7e32a2c22122d5be52e4385a30070f09ef5fa1f4",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "master",
+        "owner": "connorbaker",
+        "ref": "fix/ncurses-no-unicode",
         "repo": "nixpkgs",
         "type": "github"
       }
