@@ -15,8 +15,14 @@
       perSystem =
         {config, pkgs, ...}:
         {
-          packages.modular = pkgs.callPackage ./modular {};
-          devShells.modular = pkgs.callPackage ./modular/devShell.nix {inherit (config.packages) modular;};
+          packages = {
+            libedit2 = pkgs.callPackage ./libedit2 {};
+            modular = pkgs.callPackage ./modular {};
+            ncurses_6_5 = pkgs.callPackage ./ncurses_6_5 {};
+          };
+          devShells.mojo = pkgs.callPackage ./mojo/devShell.nix {
+            inherit (config.packages) libedit2 modular ncurses_6_5;
+          };
         };
     };
 }

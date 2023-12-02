@@ -2,6 +2,16 @@
 
 A Nix flake to package the Mojo language.
 
+> [!Warning]
+> Attempting to run `mojo` results in the following error:
+>
+> ```console
+> /tmp/modular/pkg/packages.modular.com_mojo/bin/lldb: /nix/store/5i51nfixxx3p3gshkfsjj4bzp7wajwxz-ncurses-6.4/lib/libpanel.so.6: version `NCURSES6_5.0.19991023' not found (required by /tmp/modular/pkg/packages.modular.com_mojo/lib/liblldb.so.18git)
+> /tmp/modular/pkg/packages.modular.com_mojo/bin/lldb: /nix/store/5i51nfixxx3p3gshkfsjj4bzp7wajwxz-ncurses-6.4/lib/libtinfo.so.6: version `NCURSES6_5.0.19991023' not found (required by /tmp/modular/pkg/packages.modular.com_mojo/lib/liblldb.so.18git)
+> ```
+>
+> The current version of `ncurses` in use does not match what `mojo` expects.
+
 ## Updating `modular`
 
 Simply run
@@ -10,13 +20,13 @@ Simply run
 nix run .#modular.updateScript
 ```
 
-## Working with `modular`
+## Using `mojo`
 
-To get a shell with `modular` available, run
+To get a shell with `mojo` available, run
 
 ```console
 export MODULAR_AUTH=<your auth key>
-nix develop .#modular
+nix develop .#mojo
 ```
 
 ## Background
